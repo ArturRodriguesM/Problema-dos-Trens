@@ -6,8 +6,8 @@ import javafx.fxml.Initializable;
 
 public class Controlador extends Declarador implements Initializable {
 
-  public Controlador(String arquivo) throws Exception {
-    super(arquivo);
+  public Controlador(String arquivo, String css) throws Exception {
+    super(arquivo, css);
   }
 
   @Override

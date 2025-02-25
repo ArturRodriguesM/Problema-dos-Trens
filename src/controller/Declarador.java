@@ -32,12 +32,13 @@ public class Declarador {
    * Parametros: Nome do arquivo fxml a ser controlado; arquivo FXML
    * Retorno: Metodo construtor nao possui retorno
    */
-  public Declarador(String arquivo) throws Exception {
+  public Declarador(String arquivo, String css) throws Exception {
     carregador = new FXMLLoader(getClass().getResource(arquivo));
     this.arquivo = arquivo;
     this.carregador.setController(this);
     elementos = this.carregador.load();
     cena = new Scene(elementos);
+    cena.getStylesheets().add(getClass().getResource(css).toExternalForm());
   }
 
   /****************************************************************

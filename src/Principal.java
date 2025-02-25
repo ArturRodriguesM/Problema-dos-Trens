@@ -26,7 +26,7 @@ public class Principal extends Application {
    */
   @Override
   public void start(Stage palco) throws Exception {
-    Controlador circuito = new Controlador("../view/scene.fxml");
+    Controlador circuito = new Controlador("../view/scene.fxml", "../view/index.css");
     palco = Declarador.getG_Palco();
     palco.setResizable(false);
     palco.sizeToScene();
