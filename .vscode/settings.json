@@ -1,7 +1,10 @@
 {
-    "java.project.sourcePaths": ["src"],
-    "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar"
-    ]
+  "java.project.sourcePaths": ["pc_trabalho01_202310240"],
+  "java.project.outputPath": "bin",
+  "java.project.referencedLibraries": [],
+  "files.associations": { "*.java": "java" },
+  "[java]": {
+    "files.autoGuessEncoding": false,
+    "files.encoding": "iso88591"
+  }
 }
