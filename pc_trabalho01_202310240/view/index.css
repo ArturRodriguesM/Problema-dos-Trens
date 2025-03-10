@@ -1,9 +1,9 @@
 @font-face {
-  font-family: "Minecraft";
+  font-family: Minecraft;
   src: local("Minecraft.ttf");
 }
 
 .label {
   -fx-font-size: 20px;
-  -fx-font-family: "Minecraft";
+  -fx-font-family: Minecraft;
 }
