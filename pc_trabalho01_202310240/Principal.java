@@ -5,7 +5,7 @@
 * Inicio...........:  23/03/2024
 * Ultima alteracao.:  18/04/2024
 * Nome.............:  Principal
-* Funcao...........:  Iniciar a aplicação do Javafx
+* Funcao...........:  Iniciar a aplicacao do Javafx
 *************************************************************** */
 
 import controller.*;
