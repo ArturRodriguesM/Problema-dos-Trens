@@ -1,14 +1,14 @@
 /****************************************************************
-* Autor............:  Artur Rodrigues Moura Rocha
-* Matricula........:  202310240
-* Inicio...........:  23/03/2024
-* Ultima alteracao.:  18/04/2024
-* Nome.............:  Declarador
-* Funcao...........:  Responsavel por importar ao java os arquivos 
-                      FXML do projeto. Todas as classes controladoras 
-                      sao herdadas dessa classe, de forma a padronizar 
-                      a inicializacao
-*************************************************************** */
+* Autor............: Artur Rodrigues Moura Rocha
+* Matricula........: 202310240 
+* Inicio...........: 25/02/2025
+* Ultima alteracao.: 14/03/2025
+* Nome.............: Declarador.java
+* Funcao...........: Responsavel por importar ao java os arquivos 
+                     FXML do projeto. Todas as classes controladoras 
+                     sao herdadas dessa classe, de forma a padronizar 
+                     a inicializacao
+****************************************************************/
 package controller;
 
 import javafx.fxml.FXMLLoader;

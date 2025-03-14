@@ -1,12 +1,12 @@
 
 /****************************************************************
-* Autor............:  Artur Rodrigues Moura Rocha
-* Matricula........:  202310240
-* Inicio...........:  23/03/2024
-* Ultima alteracao.:  18/04/2024
-* Nome.............:  Principal
-* Funcao...........:  Iniciar a aplicacao do Javafx
-*************************************************************** */
+* Autor............: Artur Rodrigues Moura Rocha
+* Matricula........: 202310240 
+* Inicio...........: 10/03/2025
+* Ultima alteracao.: 14/03/2025
+* Nome.............: Principal.java
+* Funcao...........: Iniciar a aplicacao do Javafx
+****************************************************************/
 
 import controller.*;
 import javafx.application.Application;

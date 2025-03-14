@@ -1,4 +1,11 @@
-
+/****************************************************************
+* Autor............: Artur Rodrigues Moura Rocha
+* Matricula........: 202310240 
+* Inicio...........: 25/02/2025
+* Ultima alteracao.: 14/03/2025
+* Nome.............: Controlador.java
+* Funcao...........: Controle da interface do javafx
+****************************************************************/
 package controller;
 
 import java.net.URL;

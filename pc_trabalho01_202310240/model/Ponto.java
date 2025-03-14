@@ -1,11 +1,11 @@
-/* ***************************************************************
-* Autor............:  Artur Rodrigues Moura Rocha
-* Matricula........:  202310240
-* Inicio...........:  23/03/2024
-* Ultima alteracao.:  29/03/2024
-* Nome.............:  Ponto
-* Funcao...........:  Classe de pontos. Indica coordenadas na aplicacao
-*************************************************************** */
+/****************************************************************
+* Autor............: Artur Rodrigues Moura Rocha
+* Matricula........: 202310240 
+* Inicio...........: 10/03/2025
+* Ultima alteracao.: 14/03/2025
+* Nome.............: Ponto.java
+* Funcao...........: Classe de pontos. Indica coordenadas na aplicacao
+****************************************************************/
 package model;
 
 public class Ponto {

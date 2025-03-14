@@ -38,6 +38,7 @@ class CustomLanguageProvider extends globalThis.FileheaderLanguageProvider {
     "typescript",
     "javascriptreact",
     "typescriptreact",
+    "java"
   ];
 
   /**
@@ -60,12 +61,14 @@ class CustomLanguageProvider extends globalThis.FileheaderLanguageProvider {
   getTemplate(tpl, variables) {
     // prettier-ignore
     return tpl
-`/*
- * @author        ${variables.authorName} <${variables.authorEmail}>
- * @date          ${variables.birthtime}
- * @lastModified  ${variables.mtime}
- * Copyright © ${variables.companyName} All rights reserved
- */`;
+`/****************************************************************
+* Autor............: Artur Rodrigues Moura Rocha
+* Matricula........: 202310240 
+* Inicio...........: ${variables.birthtime}
+* Ultima alteracao.: ${variables.mtime}
+* Nome.............: ${variables.fileName}
+* Funcao...........: 
+****************************************************************/`;
   }
 }
 

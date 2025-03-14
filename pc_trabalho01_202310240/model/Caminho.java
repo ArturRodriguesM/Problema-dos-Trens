@@ -1,11 +1,11 @@
-/* ***************************************************************
-* Autor............:  Artur Rodrigues Moura Rocha
-* Matricula........:  202310240
-* Inicio...........:  23/03/2024
-* Ultima alteracao.:  30/03/2024
-* Nome.............:  Caminho
-* Funcao...........:  Classe de caminho. Indica o caminho do movimento.
-*************************************************************** */
+/****************************************************************
+* Autor............: Artur Rodrigues Moura Rocha
+* Matricula........: 202310240 
+* Inicio...........: 10/03/2025
+* Ultima alteracao.: 14/03/2025
+* Nome.............: Caminho.java
+* Funcao...........: Classe de caminho. Indica o caminho do movimento.
+****************************************************************/
 package model;
 
 public class Caminho {

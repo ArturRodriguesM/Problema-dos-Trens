@@ -1,15 +1,15 @@
-/* ***************************************************************
-* Autor............:  Artur Rodrigues Moura Rocha
-* Matricula........:  202310240
-* Inicio...........:  24/03/2024
-* Ultima alteracao.:  18/04/2024
-* Nome.............:  Temporizador
-* Funcao...........:  Responsavel por calcular a passagem de tempo
-                      do sistema para a realizacao de animacoes.
-                      Feita do tipo abstrato, pois o metodo "acao"
-                      e variavel de acordo com os objetos em animacao.
-                      Eh uma extensao da classe "AnimationTimer"
-*************************************************************** */
+/****************************************************************
+* Autor............: Artur Rodrigues Moura Rocha
+* Matricula........: 202310240 
+* Inicio...........: 10/03/2025
+* Ultima alteracao.: 14/03/2025
+* Nome.............: Temporizador.java
+* Funcao...........: Responsavel por calcular a passagem de tempo
+                     do sistema para a realizacao de animacoes.
+                     Feita do tipo abstrato, pois o metodo "acao"
+                     e variavel de acordo com os objetos em animacao.
+                     Eh uma extensao da classe "AnimationTimer"
+****************************************************************/
 package model;
 
 import javafx.animation.AnimationTimer;
