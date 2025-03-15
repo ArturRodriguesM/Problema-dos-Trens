@@ -12,38 +12,40 @@ public class Ponto {
   private double x; // coordenada x
   private double y; // coodernada y
 
-  /*
-   * ***************************************************************
-   * Metodo: Ponto
-   * Funcao: Construtor da classe Ponto
-   * Parametros: coordenadas x e y
-   * Retorno: Metodo construtor nao possui retorno
-   */
+  /**************************************************************** <p>
+  * Metodo: Ponto <p>
+  * Funcao: Construtor da classe Potno <p>
+  @param x coordenada x
+  @param y coordenada y
+  @return <code>N/A</code> 
+  ****************************************************************/
+
   public Ponto(double x, double y) {
     this.x = x;
     this.y = y;
   }
 
-  /*
-   * ***************************************************************
-   * Metodo: Ponto
-   * Funcao: Construtor da classe Ponto. Responsavel por copiar o objeto
-   * do parametro para o objeto atual.
-   * Parametros: objeto do tipo ponto
-   * Retorno: Metodo construtor nao possui retorno
-   */
+  /**************************************************************** <p>
+  * Metodo: Ponto <p>
+  * Funcao: Construtor da classe Ponto. Responsavel por copiar o 
+  * objeto do parametro para o objeto atual. <p>
+  @param ponto ponto a ser copiado
+  @return <code>N/A</code> 
+  ****************************************************************/
+
   public Ponto(Ponto ponto) {
     this.x = ponto.getX();
     this.y = ponto.getY();
   }
 
   /*
-   * ***************************************************************
-   * Metodos: Getters
-   * Funcao: Getters dos atributos da classe
-   * Parametros: N/A
-   * Retorno: Respectivos atributos
-   */
+  *************************************************************** <p>
+  * Metodo: Getters <p>
+  * Funcao: getters dos atributos da classe <p>
+  @param N/A
+  @return  atributos
+  ****************************************************************/
+
   public double getX() {
     return x;
   }
@@ -53,12 +55,13 @@ public class Ponto {
   }
 
   /*
-   * ***************************************************************
-   * Metodos: Setters
-   * Funcao: Setters dos atributos da classe
-   * Parametros: Respectivos atributos
-   * Retorno: VOID
-   */
+  *************************************************************** <p>
+  * Metodo: Setters <p>
+  * Funcao: setters dos atributos da classe <p>
+  @param  respectivos atributos
+  @return  N/A
+  ****************************************************************/
+
   public void setX(double x) {
     this.x = x;
   }
@@ -67,13 +70,6 @@ public class Ponto {
     this.y = y;
   }
 
-  /*
-   * ***************************************************************
-   * Metodos: toString (herdada)
-   * Funcao: retornar os valores do objeto
-   * Parametros: N/A
-   * Retorno: string
-   */
   @Override
   public String toString() {
     return "(" + getX() + ", " + getY() + ")";

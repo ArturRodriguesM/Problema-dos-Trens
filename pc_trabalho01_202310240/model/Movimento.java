@@ -4,14 +4,21 @@
 * Inicio...........: 10/03/2025
 * Ultima alteracao.: 14/03/2025
 * Nome.............: Movimento.java
-* Funcao...........: Responsavel por determinar o movimento dos fantasmas
+* Funcao...........: Responsavel por determinar o movimento de uma
+                    imagem qualquer por um certo caminho
 ****************************************************************/
+
 package model;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Slider;
 import javafx.geometry.NodeOrientation;
 import javafx.application.Platform;
+
+/**************************************************************** <p>
+* Classe: Movimento <p>
+* Funcao: Cria o movimento de uma certa imagem <p>
+****************************************************************/
 
 public class Movimento extends Thread {
   private ImageView objeto; // Imagem que e movimentada
@@ -25,24 +32,24 @@ public class Movimento extends Thread {
   private Caminho caminho; // Caminho que o objeto se movimentara
   private Slider controle_Velocidade; // controle de velocidade associado ao objeto
   private boolean em_Regiao_Critica = false; // indica se o objeto esta em alguma regiao critica ou nao
+  /**
+  * FUNCIONAMENTO DA ANIMACAO <p>
+  * 1- calcula-se o quanto que o objeto necessita se movimentar (variavel 
+  * variacao_Total) para cada eixo  <p>
+  * 2- calcula o sentido de movimento (positivo ou negativo) para cada eixo <p>
+  * 3- a medida que o objeto se movimenta (metodo atualizar), sua variacao 
+  * aumenta, ocasionando em 2 condicoes: <p>
+  * - se a variacao atual ainda eh menor que a total, o objeto mantem-se 
+  * movimentando <p>
+  * - se a variacao atual e igual ou maior que a total, o objeto finaliza sua 
+  * movimentacao <p>
+  * 4- o objeto parte em direcao ao outro ponto do caminho indicado no 
+  * parametro(variavel indice_Atual) <p>
+  * 5- se os pontos acabarem, o objeto eh teleportado ao ponto de reinicio da 
+  * animacao <p>
+  * 6- se nao ha ponto de reinicio, entao a animacao eh finalizada <p>
+  */
   Temporizador animacao = new Temporizador() { // responsavel por movimentar o objeto
-    /*
-     * FUNCIONAMENTO DA ANIMACAO
-     * 1- calcula-se o quanto que o objeto necessita se movimentar (variavel
-     * variacao_Total) para cada eixo
-     * 2- calcula o sentido de movimento (positivo ou negativo) para cada eixo
-     * 3- a medida que o objeto se movimenta (metodo atualizar), sua variacao
-     * aumenta, ocasionando em 2 condicoes:
-     * - se a variacao atual ainda eh menor que a total, o objeto mantem-se
-     * movimentando
-     * - se a variacao atual e igual ou maior que a total, o objeto finaliza sua
-     * movimentacao
-     * 4- o objeto parte em direcao ao outro ponto do caminho indicado no
-     * parametro(variavel indice_Atual)
-     * 5- se os pontos acabarem, o objeto eh teleportado ao ponto de reinicio da
-     * animacao
-     * 6- se nao ha ponto de reinicio, entao a animacao eh finalizada
-     */
 
     double variacao_Total_X;
     double variacao_Total_Y;
@@ -51,29 +58,28 @@ public class Movimento extends Thread {
     double finalX, finalY; // Ponto em que o objeto precisa alcancar no final da animacao
     int indice_Atual; // Indice do ponto em que o objeto precisa se mover
 
-    /*
-     * ***************************************************************
-     * Metodo: start (Herdado)
-     * Funcao: responsavel por iniciar a animacao do objeto. Sempre comeca
-     * do indice 0
-     * Parametros: N/A
-     * Retorno: VOID
-     */
+    /**************************************************************** <p>
+    * Metodo: start (Herdado) <p>
+    * Funcao: responsavel por iniciar a animacao do objeto. Sempre comeca
+    * do indice 0 <p>
+    @param N/A 
+    @return <code>void</code> apenas inicializa o movimento
+    ****************************************************************/
+
     @Override
     public void start() {
       inicializacao(0); // inicializa o movimento para o primeiro ponto do array (de indice 0)
       super.start(); // inicializa a animacao (chama o metodo acao)
     }
 
-    /*
-     * ***************************************************************
-     * Metodo: inicializacao
-     * Funcao: realizar o calculo da variacao total e do sentido que o
-     * objeto deve se deslocar ao ponto indicado pelo indice do
-     * parametro.
-     * Parametros: indice do ponto atual a ser deslocado
-     * Retorno: VOID
-     */
+    /**************************************************************** <p>
+    * Metodo: inicializacao <p>
+    * Funcao: realizar o calculo da variacao total e do sentido que o
+    * objeto deve se deslocar ao ponto indicado pelo indice do parametro <p>
+    @param atual  indice do ponto atual a ser deslocado
+    @return <code>void</code>
+    ****************************************************************/
+
     public void inicializacao(int atual) {
 
       indice_Atual = atual;
@@ -98,16 +104,16 @@ public class Movimento extends Thread {
       variacao_Total_Y = Math.abs(variacao_Total_Y);
     }
 
-    /*
-     * ***************************************************************
-     * Metodo: acao
-     * Funcao: movimentar o objeto ao ponto desejado. Analisar se a variacao
-     * atual do objeto chegou na variacao total e se a movimentacao
-     * foi completa. Reinciar o movimento caso haja ponto de reinicio,
-     * e para-lo caso nao.
-     * Parametros: double tempo de 1 frame
-     * Retorno: VOID
-     */
+    /**************************************************************** <p>
+    * Metodo: acao <p>
+    * Funcao: movimentar o objeto ao ponto desejado. Analisar se a variacao
+    * atual do objeto chegou na variacao total e se a movimentacao
+    * foi completa. Reinciar o movimento caso haja ponto de reinicio,
+    * e para-lo caso nao.<p>
+    @param variacao_de_Tempo double tempo de 1 frame 
+    @return <code>void</code>
+    ****************************************************************/
+
     @Override
     public void acao(double variacao_De_Tempo) {
       if (variacao_Atual_X < variacao_Total_X) { // se o objeto ainda nao atingiu o ponto no eixo x
@@ -161,13 +167,14 @@ public class Movimento extends Thread {
     }
   };
 
-  /*
-   * ***************************************************************
-   * Metodo: Movimento
-   * Funcao: Construtor da classe Movimento.
-   * Parametros: Imagem do objeto, slider para controlar velocidade
-   * Retorno: Metodo construtor nao possui retorno
-   */
+  /**************************************************************** <p>
+  * Metodo: Movimento <p>
+  * Funcao: Construtor da classe Movimento. <p>
+  @param objeto Imagem do objeto se movimentando
+  @param controle_Velocidade slider da interface
+  @return <code>N/A</code> movimento criado
+  ****************************************************************/
+
   public Movimento(ImageView objeto, Slider controle_Velocidade) {
     this.objeto = objeto;
     this.controle_Velocidade = controle_Velocidade;
@@ -176,32 +183,30 @@ public class Movimento extends Thread {
     posicao = new Ponto(objeto.getLayoutX(), objeto.getLayoutY());
   }
 
-  /*
-   * ***************************************************************
-   * Metodo: run
-   * Funcao: metodo chamado para movimentar os fantasmas quando a thread eh
-   * inicializada
-   * Parametros: N/A
-   * Retorno: void
-   */
+  /**************************************************************** <p>
+  * Metodo: run <p>
+  * Funcao: inicia o movimento quando a thread inicializa <p>
+  @param N/A 
+  @return <code>void</code> 
+  ****************************************************************/
+
   @Override
   public void run() {
     Platform.runLater(() -> moverPara());
   }
 
-  /*
-   * ***************************************************************
-   * Metodo: moverPara
-   * Funcao: Metodo responsavel por deslocar o objeto por um certo
-   * caminho determinado pela variavel "caminho". Um caminho sempre possui
-   * um ponto de inicio, um array de pontos de deslocamento
-   * e um ponto de reinicio para iniciar novamente o deslocamento.
-   * Caso o ponto de inicio seja nulo, o movimento comeca a partir
-   * do ponto atual do objeto. Caso o ponto de reinicio seja nulo,
-   * o movimento eh encerrado.
-   * Parametros: N/A
-   * Retorno: VOID
-   */
+  /**************************************************************** <p>
+  * Metodo: moverPara <p>
+  * Funcao: Metodo responsavel por deslocar o objeto por um certo
+  * caminho determinado pela variavel "caminho". Um caminho sempre possui
+  * um ponto de inicio, um array de pontos de deslocamento
+  * e um ponto de reinicio para iniciar novamente o deslocamento.
+  * Caso o ponto de inicio seja nulo, o movimento comeca a partir
+  * do ponto atual do objeto. Caso o ponto de reinicio seja nulo,
+  * o movimento eh encerrado.<p>
+  @param N/A 
+  @return <code>void</code>
+  ****************************************************************/
 
   public void moverPara() {
     pararMovimento();
@@ -216,13 +221,12 @@ public class Movimento extends Thread {
     animacao.start();
   }
 
-  /*
-   * ***************************************************************
+  /****************************************************************
    * Metodo: pararMovimento
    * Funcao: consegue parar o movimento do trem
-   * Parametros: N/A
-   * Retorno: void
-   */
+   @param N/A
+   @return <code>void</code>
+    ****************************************************************/
   public void pararMovimento() {
     if (emMovimento) {
       animacao.stop();
@@ -230,19 +234,28 @@ public class Movimento extends Thread {
     }
   }
 
-  /*
-   * ***************************************************************
-   * Metodo: atualizarX e atualizarY
-   * Funcao: metodos responsaveis por deslocar o objeto durante o tempo
-   * determinado pelo parametro, seguindo uma certa velocidade.
-   * Baseados na formula fisica S = So +- V*T
-   * Parametros: double Tempo
-   * Retorno: VOID
-   */
+  /**************************************************************** <p>
+  * Metodo: atualizarX <p>
+  * Funcao: responsavel por deslocar o objeto no eixo x durante o tempo
+  determinado pelo parametro, em certa velocidade.
+  Baseado na formula fisica S = S0 +- v*t <p>
+  @param tempo tempo de deslocamento
+  @return <code>void</code> atualiza o layout x do objeto
+  ****************************************************************/
+
   public void atualizarX(double tempo) {
     setPosicaoX(getPosicaoX() + getVelocidadeX() * tempo);
     objeto.setLayoutX(getPosicaoX());
   }
+
+  /**************************************************************** <p>
+  * Metodo: atualizarY <p>
+  * Funcao: responsavel por deslocar o objeto no eixo y durante o tempo
+  determinado pelo parametro, em certa velocidade.
+  Baseado na formula fisica S = S0 +- v*t <p>
+  @param tempo tempo de deslocamento
+  @return <code>void</code> atualiza o layout y do objeto
+  ****************************************************************/
 
   public void atualizarY(double tempo) {
     setPosicaoY(getPosicaoY() + getVelocidadeY() * tempo);
@@ -250,12 +263,13 @@ public class Movimento extends Thread {
   }
 
   /*
-   * ***************************************************************
-   * Metodos: Getters
-   * Funcao: Getters dos atributos da classe
-   * Parametros: N/A
-   * Retorno: Respectivos atributos
-   */
+  *************************************************************** <p>
+  * Metodo: Getters <p>
+  * Funcao: getters dos atributos da classe <p>
+  @param N/A
+  @return  atributos
+  ****************************************************************/
+
   public ImageView getObjeto() {
     return objeto;
   }
@@ -310,12 +324,13 @@ public class Movimento extends Thread {
   }
 
   /*
-   * ***************************************************************
-   * Metodos: Setters
-   * Funcao: Setters dos atributos da classe
-   * Parametros: Respectivos atributos
-   * Retorno: VOID
-   */
+  *************************************************************** <p>
+  * Metodo: Setters <p>
+  * Funcao: setters dos atributos da classe <p>
+  @param  respectivos atributos
+  @return  N/A
+  ****************************************************************/
+
   public void setCaminho(Caminho caminho) {
     this.caminho = caminho;
   }

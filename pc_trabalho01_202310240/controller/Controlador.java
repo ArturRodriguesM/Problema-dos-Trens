@@ -17,6 +17,11 @@ import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import model.*;
 
+/**************************************************************** <p>
+* Classe: Controlador <p>
+* Funcao: Controle da interface do javafx <p>
+****************************************************************/
+
 public class Controlador extends Declarador implements Initializable {
   // Pontos para o caminho B (pela DIREITA)
   // private Ponto b0 = new Ponto(732, -60);
@@ -42,6 +47,14 @@ public class Controlador extends Declarador implements Initializable {
 
   @FXML
   private Slider sliderTeste;
+
+  /**************************************************************** <p>
+  * Metodo: Controlador (construtor) <p>
+  * Funcao: Cria o controlador do javafx ja com o css <p>
+  @param arquivo arquivo FXML da aplicacao
+  @param css arquivo css de estilizacao
+  @return <code>N/A</code> construcao do controlador
+  ****************************************************************/
 
   public Controlador(String arquivo, String css) throws Exception {
     super(arquivo, css);

@@ -14,6 +14,11 @@ package model;
 
 import javafx.animation.AnimationTimer;
 
+/**************************************************************** <p>
+* Classe: Temporizador <p>
+* Funcao: temporizar o movimento de uma animacao <p>
+****************************************************************/
+
 public abstract class Temporizador extends AnimationTimer {
   private long tempoInicial = -1; // Possui o instante de tempo em que 1 frame comeca.
                                   // Inicializado com "-1" para indicar que nao ha animacao no momento
@@ -22,14 +27,14 @@ public abstract class Temporizador extends AnimationTimer {
   boolean pausa = false; // Variavel responsavel por pausar o funcionamento da animacao com espera
                          // ocupada
 
-  /*
-   * ***************************************************************
-   * Metodo: handle (Herdado)
-   * Funcao: calcular a variacao de tempo do sistema. Eh rodado no inicio de cada
-   * frame a cada frame
-   * Parametros: tempoFinal = tempo atual do sistema, em nanosegundos
-   * Retorno: VOID
-   */
+  /**************************************************************** <p>
+  * Metodo: handle <p>
+  * Funcao: calcula a variacao de tempo do sistema. Eh rodado no 
+  inicio de cada frame <p>
+  @param tempoFinal tempo atual do sistema, em nanosegundos
+  @return <code>void</code> 
+  ****************************************************************/
+
   @Override
   public void handle(long tempoFinal) {
     // Calculo de variacao de tempo de um unico frame, em segundos
@@ -44,37 +49,37 @@ public abstract class Temporizador extends AnimationTimer {
     tempoInicial = tempoFinal;
   }
 
-  /**
-   * ***************************************************************
-   * Metodo: acao
-   * Funcao: realizar a animacao do objeto
-   * Parametros: variacao_De_Tempo
-   * Retorno: VOID
-   */
+  /**************************************************************** <p>
+  * Metodo: acao <p>
+  * Funcao: realiza a animacao do objeto <p>
+  @param variacao_De_Tempo o tempo de 1 unico frame
+  @return <code>void</code> 
+  ****************************************************************/
 
   public abstract void acao(double variacao_De_Tempo);
 
-  /*
-   * ***************************************************************
-   * Metodo: start (Herdado)
-   * Funcao: iniciar uma animacao. Atribui ao tempo inicial o
-   * tempo atual do sistema
-   * Parametros: N/A
-   * Retorno: VOID
-   */
+  /**************************************************************** <p>
+  * Metodo: start <p>
+  * Funcao: iniciar uma animacao. Atribui ao tempo iniciao o tempo
+  * atual do sistema <p>
+  @param N/A 
+  @return <code>void</code> 
+  ****************************************************************/
+
   @Override
   public void start() {
     tempoInicial = System.nanoTime();
     super.start();
   }
 
-  /*
-   * ***************************************************************
-   * Metodo: stop (Herdado)
-   * Funcao: parar uma certa animacao. Atribui ao tempo inicial -1
-   * Parametros: N/A
-   * Retorno: VOID
-   */
+  /**************************************************************** <p>
+  * Metodo: stop <p>
+  * Funcao: parar uma certa animacao. O valor "-1" indica que nao ha
+  * animacao <p>
+  @param N/A 
+  @return <code>void</code> 
+  ****************************************************************/
+
   @Override
   public void stop() {
     tempoInicial = -1;

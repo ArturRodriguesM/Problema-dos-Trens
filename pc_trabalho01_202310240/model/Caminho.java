@@ -6,35 +6,45 @@
 * Nome.............: Caminho.java
 * Funcao...........: Classe de caminho. Indica o caminho do movimento.
 ****************************************************************/
+
 package model;
+
+/**************************************************************** <p>
+* Classe: Caminho <p>
+* Funcao: Guarda o caminho, em pixeis, da movimentacao dos objetos
+interface <p>
+****************************************************************/
 
 public class Caminho {
   private Ponto inicio; // Ponto em que o objeto ira iniciar o movimento
   private Ponto reinicio; // Ponto em que o objeto ira reiniciar o movimento
   private Ponto[] circuito; // Conjunto de pontos nos quais o objeto ira se mover
 
-  /*
-   * ***************************************************************
-   * Metodo: Caminho
-   * Funcao: Construtor da classe Caminho
-   * Parametros: Conjunto de pontos do circuito com o ponto de inicio
-   * e reinicio
-   * Retorno: Metodo construtor nao possui retorno
-   */
+  /**************************************************************** <p>
+  * Metodo: Caminho <p>
+  * Funcao Cria um novo caminho de movimento (construtor) <p>
+  @param inicio se fornecido, sera onde o objeto iniciara o movimento
+  @param reinicio se fornecido, sera onde ele reiniciara o movimento
+  quando o circuito acabar
+  @param circuito array de pontos por onde o objeto se deslocara. Entre
+  um ponto e outro, ele se movimentara em linha reta.
+  @return <code>N/A</code> um novo caminho
+  ****************************************************************/
+
   public Caminho(Ponto inicio, Ponto reinicio, Ponto[] circuito) {
     this.inicio = inicio;
     this.reinicio = reinicio;
     this.circuito = circuito;
   }
 
-  /*
-   * ***************************************************************
-   * Metodo: Caminho
-   * Funcao: Construtor da classe Caminho. Responsavel por copiar o objeto
-   * do parametro para o objeto atual.
-   * Parametros: objeto do tipo Caminho
-   * Retorno: Metodo construtor nao possui retorno
-   */
+  /**************************************************************** <p>
+  * Metodo: Caminho <p>
+  * Funcao Cria um novo caminho de movimento (construtor) <p>
+  @param caminho o circuito do caminho passado no parametro
+  sera o novo caminho criado
+  @return <code>N/A</code> um novo caminho
+  ****************************************************************/
+
   public Caminho(Caminho caminho) {
     this.inicio = new Ponto(caminho.getInicio());
     this.reinicio = new Ponto(caminho.getReinicio());
@@ -46,12 +56,13 @@ public class Caminho {
   }
 
   /*
-   * ***************************************************************
-   * Metodos: Getters
-   * Funcao: Getters dos atributos da classe
-   * Parametros: N/A
-   * Retorno: Respectivos atributos
-   */
+  *************************************************************** <p>
+  * Metodo: Getters <p>
+  * Funcao: getters dos atributos da classe <p>
+  @param N/A
+  @return  atributos
+  ****************************************************************/
+
   public Ponto getInicio() {
     return inicio;
   }
@@ -65,12 +76,13 @@ public class Caminho {
   }
 
   /*
-   * ***************************************************************
-   * Metodos: Setters
-   * Funcao: Setters dos atributos da classe
-   * Parametros: Respectivos atributos
-   * Retorno: VOID
-   */
+  *************************************************************** <p>
+  * Metodo: Setters <p>
+  * Funcao: setters dos atributos da classe <p>
+  @param  respectivos atributos
+  @return  N/A
+  ****************************************************************/
+
   public void setInicio(Ponto inicio) {
     this.inicio = inicio;
   }

@@ -16,6 +16,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**************************************************************** <p>
+* Classe: Declarador <p>
+* Funcao: importar arquivos FXML e CSS a interface javafx, criando
+um controlador para a interface <p>
+****************************************************************/
+
 public class Declarador {
   private String arquivo; // nome do arquivo da classe
   private FXMLLoader carregador; // objeto do arquivo fxml
@@ -25,13 +31,17 @@ public class Declarador {
   // projeto.
   public static Stage g_Palco = new Stage();
 
-  /****************************************************************
-   * Metodo: Declarador
-   * Funcao: Construtor da classe Declarador. Torna o qualquer objeto
-   * declarado como Controlador do arquivo fxml de entrada
-   * Parametros: Nome do arquivo fxml a ser controlado; arquivo FXML
-   * Retorno: Metodo construtor nao possui retorno
-   */
+  /**************************************************************** <p>
+  * Metodo: Declarador <p>
+  * Funcao: Construtor da classe Declarador. Torna o qualquer objeto
+  * declarado como Controlador do arquivo fxml de entrada
+  * Parametros: Nome do arquivo fxml a ser controlado; arquivo FXML
+  * Retorno: Metodo construtor nao possui retorno <p>
+  @param arquivo arquivo FXML da interface
+  @param css arquivo de estilizacao
+  @return <code>N/A</code> novo declarador
+  ****************************************************************/
+
   public Declarador(String arquivo, String css) throws Exception {
     carregador = new FXMLLoader(getClass().getResource(arquivo));
     this.arquivo = arquivo;
@@ -41,24 +51,26 @@ public class Declarador {
     cena.getStylesheets().add(getClass().getResource(css).toExternalForm());
   }
 
-  /****************************************************************
-   * Metodo: Abrir
-   * Funcao: Coloca a "cena"(scene) de um certo controlador no "palco"
-   * (stage)
-   * Parametros: N/A
-   * Retorno: void
-   */
+  /**************************************************************** <p>
+  * Metodo: abrir <p>
+  * Funcao: Carrega o objeto com os arquivos inicializados dentro da
+  * interface <p>
+  @param N/A 
+  @return <code>void</code
+  ****************************************************************/
+
   public void abrir() {
     g_Palco.setScene(this.getCena());
     g_Palco.show();
   }
 
-  /****************************************************************
-   * Metodos: Getters
-   * Funcao: Getters dos atributos da classe
-   * Parametros: N/A
-   * Retorno: Respectivos atributos
-   */
+  /*
+  *************************************************************** <p>
+  * Metodo: Getters <p>
+  * Funcao: getters dos atributos da classe <p>
+  @param N/A
+  @return  atributos
+  ****************************************************************/
   public String getArquivo() {
     return arquivo;
   }
@@ -79,12 +91,13 @@ public class Declarador {
     return g_Palco;
   }
 
-  /****************************************************************
-   * Metodos: Setters
-   * Funcao: Setters dos atributos da classe
-   * Parametros: Respectivos atributos
-   * Retorno: VOID
-   */
+  /*
+  *************************************************************** <p>
+  * Metodo: Setters <p>
+  * Funcao: setters dos atributos da classe <p>
+  @param  respectivos atributos
+  @return  N/A
+  ****************************************************************/
   public void setArquivo(String arquivo) {
     this.arquivo = arquivo;
   }
