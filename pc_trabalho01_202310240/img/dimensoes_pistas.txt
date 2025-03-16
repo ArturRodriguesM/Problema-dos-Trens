@@ -1,0 +1,4 @@
+VERTICAL 
+  - abrir "cenarioVertical" no gimp
+  - colocar grade 35x35 e seguir o modelo para fazer a pista
+  
