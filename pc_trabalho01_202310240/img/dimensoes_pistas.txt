@@ -1,4 +1,5 @@
 VERTICAL 
   - abrir "cenarioVertical" no gimp
   - colocar grade 35x35 e seguir o modelo para fazer a pista
+  - posicionar com a grade dividindo a tela em 4 partes horizontalmente, e colocar no meio do meio 
   

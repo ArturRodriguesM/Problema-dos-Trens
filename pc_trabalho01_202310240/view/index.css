@@ -3,7 +3,33 @@
   src: local("Minecraft.ttf");
 }
 
-.label {
-  -fx-font-size: 20px;
-  -fx-font-family: Minecraft;
+.fundo {
+  -fx-background-image: url("../img/cenarioVertical.png");
 }
+
+/* estilo de todos os textos da interface  */
+.text {
+  -fx-font-family: Minecraft;
+  -fx-text-fill: rgb(50,50,50); /* cor do texto */
+}
+
+/* titulo "dino's run" */
+.title{
+  -fx-font-size: 70px;
+}
+
+/* configurções de todos os botões da interface */
+.button {
+  -fx-background-color: rgb(255, 255, 255);
+  -fx-background-radius: 20px;
+  -fx-border-width: 5px;
+  -fx-border-color: rgb(105, 105, 105);
+  -fx-border-radius: 20px;
+  -fx-font-size: 30px;
+}
+
+.button:hover {
+  -fx-background-color: rgb(226, 226, 226);
+  -fx-text-fill: rgb(0,0,0);
+}
+

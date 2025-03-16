@@ -9,12 +9,14 @@
 package controller;
 
 import java.net.URL;
+import javafx.scene.Group;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import model.*;
 
 /**************************************************************** <p>
@@ -43,10 +45,7 @@ public class Controlador extends Declarador implements Initializable {
   Movimento testeDino;
 
   @FXML
-  private ImageView dino;
-
-  @FXML
-  private Slider sliderTeste;
+  private Group grupoInicial; //possui os titulo "dino's run" e o botao start
 
   /**************************************************************** <p>
   * Metodo: Controlador (construtor) <p>
@@ -58,13 +57,28 @@ public class Controlador extends Declarador implements Initializable {
 
   public Controlador(String arquivo, String css) throws Exception {
     super(arquivo, css);
-    testeDino.start();
-    testeDino.setCaminho(caminhoB1);
+    // testeDino.start();
+    // testeDino.setCaminho(caminhoB1);
   }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    testeDino = new Movimento(dino, sliderTeste);
+    // testeDino = new Movimento(dino, sliderTeste);
+    grupoInicial.setVisible(true);
+  }
+
+  /**************************************************************** <p>
+  * Metodo: botaoStart <p>
+  * Funcao: modifica a cena da interface quando o botao start eh 
+  clicado <p>
+  @param event evento que iniciou o metodo (click)
+  @return <code>void</code> 
+  ****************************************************************/
+
+  @FXML
+  public void botaoStart(MouseEvent event) {
+    grupoInicial.setVisible(false);
+
   }
 
 }
