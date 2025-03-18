@@ -2,7 +2,7 @@
 * Autor............: Artur Rodrigues Moura Rocha
 * Matricula........: 202310240 
 * Inicio...........: 25/02/2025
-* Ultima alteracao.: 14/03/2025
+* Ultima alteracao.: 18/03/2025
 * Nome.............: Controlador.java
 * Funcao...........: Controle da interface do javafx
 ****************************************************************/
@@ -12,9 +12,11 @@ import java.net.URL;
 import javafx.scene.Group;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -44,13 +46,21 @@ public class Controlador extends Declarador implements Initializable {
       circuitoB1);
 
   Movimento testeDino;
-
+  /** possui os titulo "dino's run" e o botao start*/
   @FXML
-  private Group grupoInicial; //possui os titulo "dino's run" e o botao start
+  private Group grupoInicial;
+  /**possui a tela de selecionar a posicao de dinossauros*/
   @FXML
-  private Group grupoSelecao; //possui a tela de selecionar a posicao de dinossauros
+  private Group grupoSelecao;
+  /** menu para selecionar a posicao inicial dos dinossauros */
   @FXML
-  private MenuButton menuSelecao; //menu para selecionar a posicao inicial dos dinossauros
+  private MenuButton menuSelecao;
+  /** opcao para selecionar a posicao do dinossauro */
+  @FXML
+  private MenuItem acima1;
+  /** opcao para selecionar a posicao do dinossauro */
+  @FXML
+  private MenuItem abaixo1;
 
   /**************************************************************** <p>
   * Metodo: Controlador (construtor) <p>
@@ -95,4 +105,27 @@ public class Controlador extends Declarador implements Initializable {
     grupoSelecao.setVisible(true);
   }
 
+  /**************************************************************** <p>
+   * Metodo: acima1Pressionado <p>
+   * Funcao: faz o primeiro dinossauro ficar na barte de cima da pista <p>
+   @param event evendo do javafx
+   @return <code>void</code> 
+   ****************************************************************/
+  @FXML
+  void acima1Pressionado(ActionEvent event) {
+    System.out.println("pressionado acima");
+    menuSelecao.setText("Acima");
+  }
+
+  /**************************************************************** <p>
+   * Metodo: abaixo1Pressionado <p>
+   * Funcao: faz o primeiro dinossauro ficar na barte de baixo da pista <p>
+   @param event evendo do javafx
+   @return <code>void</code> 
+   ****************************************************************/
+  @FXML
+  void abaixo1Pressionado(ActionEvent event) {
+    System.out.println("pressionado abaixo");
+    menuSelecao.setText("Abaixo");
+  }
 }

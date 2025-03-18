@@ -1,12 +1,17 @@
-/* @font-face {
-  font-family: Minecraft;
-  src: url("Minecraft.ttf");
-} */
+/* como o css do javafx nao permite variaveis, aqui esta
+a paleta de cores utilizadas na estilizacao:
 
+cor dos textos: rgb(50,50,50);
+cor dos textos em hover: rgb(0,0,0);
+cor das bordas: rgb(105, 105, 105);
+cor do fundo: rgb(255, 255, 255);
+cor de fundo em hover: rgb(226, 226, 226);
+
+*/
 /* estilo de todos os textos da interface  */
 .text {
   -fx-font-family: Minecraft;
-  -fx-text-fill: rgb(50,50,50); /* cor do texto */
+  -fx-text-fill: rgb(50,50,50);
 }
 
 /* configurções de todos os botões da interface */
@@ -47,7 +52,22 @@
   -fx-font-size: 15px;
 }
 
-.items {
-  -fx-background-color: white;
+/* edita o texto dos itens do menu de selecao da posicao dos dinos */
+.menu-item .label {
+
 }
 
+/* muda o menu-item quando o mouse esta em cima */
+.menu-item:focused {
+  -fx-background-color: rgb(226, 226, 226);
+}
+.menu-item:focused .label{
+  -fx-text-fill:black;
+}
+
+
+/* edita o fundo do menu dos dinos */
+.context-menu {
+  
+  -fx-border-color: rgb(105, 105, 105);
+}
