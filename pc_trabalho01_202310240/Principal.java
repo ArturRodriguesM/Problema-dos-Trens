@@ -10,6 +10,7 @@
 
 import controller.*;
 import javafx.application.Application;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**************************************************************** <p>
@@ -31,7 +32,8 @@ public class Principal extends Application {
 
   @Override
   public void start(Stage palco) throws Exception {
-    Controlador circuito = new Controlador("../view/scene.fxml", "../view/index.css");
+    Font.loadFont(Principal.class.getResourceAsStream("view/Minecraft.ttf"), 10);
+    Controlador circuito = new Controlador("../view/scene.fxml", "../index.css");
     palco = Declarador.getG_Palco();
     palco.setResizable(false);
     palco.sizeToScene();

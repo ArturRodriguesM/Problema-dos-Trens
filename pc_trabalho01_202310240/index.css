@@ -1,0 +1,53 @@
+/* @font-face {
+  font-family: Minecraft;
+  src: url("Minecraft.ttf");
+} */
+
+/* estilo de todos os textos da interface  */
+.text {
+  -fx-font-family: Minecraft;
+  -fx-text-fill: rgb(50,50,50); /* cor do texto */
+}
+
+/* configurções de todos os botões da interface */
+.button {
+  -fx-background-color: rgb(255, 255, 255);
+  -fx-background-radius: 20px;
+  -fx-font-size: 30px;
+  -fx-border-width: 5px;
+  -fx-border-color: rgb(105, 105, 105);
+  -fx-border-radius: 20px;
+}
+
+.button:hover {
+  -fx-background-color: rgb(226, 226, 226);
+  -fx-text-fill: rgb(0,0,0);
+}
+
+.fundo {
+  -fx-background-image: url("img/cenarioVertical.png");
+}
+
+/* titulo "dino's run" */
+.initial--title{
+  -fx-font-size: 70px;
+}
+
+/* titulo para selecionar a posicao dos dinos */
+.selecionar--title{
+  -fx-font-size: 30px;
+}
+
+/* menu de selecao da posicao dos dinos */
+.selecionar--menu {
+  -fx-background-color: white;
+  -fx-border-width: 2px;
+  -fx-border-color: rgb(105, 105, 105);
+  -fx-border-radius: 10px;
+  -fx-font-size: 15px;
+}
+
+.items {
+  -fx-background-color: white;
+}
+

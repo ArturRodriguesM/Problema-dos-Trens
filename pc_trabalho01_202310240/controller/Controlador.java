@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -46,6 +47,10 @@ public class Controlador extends Declarador implements Initializable {
 
   @FXML
   private Group grupoInicial; //possui os titulo "dino's run" e o botao start
+  @FXML
+  private Group grupoSelecao; //possui a tela de selecionar a posicao de dinossauros
+  @FXML
+  private MenuButton menuSelecao; //menu para selecionar a posicao inicial dos dinossauros
 
   /**************************************************************** <p>
   * Metodo: Controlador (construtor) <p>
@@ -61,16 +66,25 @@ public class Controlador extends Declarador implements Initializable {
     // testeDino.setCaminho(caminhoB1);
   }
 
+  /**************************************************************** <p>
+  * Metodo: initialize <p>
+  * Funcao: roda quando o javafx inicializa os elementos da interface.
+  Eh aqui onde se determina os seus estados iniciais <p>
+  @param location parametro do javafx
+  @param resources parametro do javafx
+  @return <code>void</code> 
+  ****************************************************************/
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    // testeDino = new Movimento(dino, sliderTeste);
     grupoInicial.setVisible(true);
+    grupoSelecao.setVisible(false);
   }
 
   /**************************************************************** <p>
   * Metodo: botaoStart <p>
-  * Funcao: modifica a cena da interface quando o botao start eh 
-  clicado <p>
+  * Funcao: modifica a cena da interface para a selcao da posicao
+  dos dinossauros quando o botao start eh pressionado <p>
   @param event evento que iniciou o metodo (click)
   @return <code>void</code> 
   ****************************************************************/
@@ -78,7 +92,7 @@ public class Controlador extends Declarador implements Initializable {
   @FXML
   public void botaoStart(MouseEvent event) {
     grupoInicial.setVisible(false);
-
+    grupoSelecao.setVisible(true);
   }
 
 }
