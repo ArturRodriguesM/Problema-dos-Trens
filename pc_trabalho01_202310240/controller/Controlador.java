@@ -23,29 +23,57 @@ import javafx.scene.input.MouseEvent;
 import model.*;
 
 /**************************************************************** <p>
-* Classe: Controlador <p>
-* Funcao: Controle da interface do javafx <p>
-****************************************************************/
+ * Classe: Controlador <p>
+ * Funcao: Controle da interface do javafx <p>
+ ****************************************************************/
 
 public class Controlador extends Declarador implements Initializable {
-  // Pontos para o caminho B (pela DIREITA)
-  // private Ponto b0 = new Ponto(732, -60);
-  private Ponto b1 = new Ponto(732, 68);
-  private Ponto b2 = new Ponto(570, 68);
-  private Ponto b3 = new Ponto(570, 260);
-  private Ponto b4 = new Ponto(732, 260);
-  private Ponto b5 = new Ponto(732, 355);
-  private Ponto b6 = new Ponto(570, 355);
-  private Ponto b7 = new Ponto(570, 547);
-  private Ponto b8 = new Ponto(732, 547);
-  private Ponto b9 = new Ponto(732, 675);
+
+  //PONTOS PARA O CAMINHO A (ESQUERDA)
+  private Ponto a0 = new Ponto(88, -70);
+  private Ponto a1 = new Ponto(88, 70);
+  private Ponto a2 = new Ponto(192, 70);
+  private Ponto a3 = new Ponto(192, 210);
+  private Ponto a4 = new Ponto(88, 210);
+  private Ponto a5 = new Ponto(88, 320);
+  private Ponto a6 = new Ponto(192, 320);
+  private Ponto a7 = new Ponto(192, 460);
+  private Ponto a8 = new Ponto(88, 460);
+  private Ponto a9 = new Ponto(88, 600);
+  private Ponto[] circuitoA1 = { a1, a2, a3, a4, a5, a6, a7, a8, a9 };
+  private Caminho caminhoA1 = new Caminho( // caminho da ESQUERDA comecando por CIMA
+      new Ponto(88, 10), // Inicio A1
+      new Ponto(88, -70), // Reinicio A1
+      circuitoA1);
+  private Ponto[] circuitoA2 = { a8, a7, a6, a5, a4, a3, a2, a1, a0 };
+  private Caminho caminhoA2 = new Caminho( // caminho da ESQUERDA comecando por BAIXO
+      new Ponto(88, 520), // Inicio A2
+      new Ponto(88, 600), // Reinicio A2
+      circuitoA2);
+
+  //PONTOS PARA O CAMINHO B (DIREITA)
+  private Ponto b0 = new Ponto(298, -70);
+  private Ponto b1 = new Ponto(298, 70);
+  private Ponto b2 = new Ponto(192, 70);
+  private Ponto b3 = new Ponto(192, 210);
+  private Ponto b4 = new Ponto(298, 210);
+  private Ponto b5 = new Ponto(298, 320);
+  private Ponto b6 = new Ponto(192, 320);
+  private Ponto b7 = new Ponto(192, 460);
+  private Ponto b8 = new Ponto(298, 460);
+  private Ponto b9 = new Ponto(298, 600);
   private Ponto[] circuitoB1 = { b1, b2, b3, b4, b5, b6, b7, b8, b9 };
   private Caminho caminhoB1 = new Caminho( // caminho da DIREITA comecando por CIMA
-      new Ponto(732, 15), // Inicio B1
-      new Ponto(732, -60), // Reinicio B1
+      new Ponto(298, 10), // Inicio B1
+      new Ponto(298, -70), // Reinicio B1
       circuitoB1);
+  private Ponto[] circuitoB2 = { b8, b7, b6, b5, b4, b3, b2, b1, b0 };
+  private Caminho caminhoB2 = new Caminho( // caminho da DIREITA comecando por BAIXO
+      new Ponto(298, 520), // Inicio B2
+      new Ponto(298, 600), // Reinicio B2
+      circuitoB2);
 
-  Movimento testeDino;
+  Movimento movimentoTRex;
   /** possui os titulo "dino's run" e o botao start*/
   @FXML
   private Group grupoInicial;
@@ -61,6 +89,12 @@ public class Controlador extends Declarador implements Initializable {
   /** opcao para selecionar a posicao do dinossauro */
   @FXML
   private MenuItem abaixo1;
+  /** imagem do t-rex 1 */
+  @FXML
+  private ImageView tRex;
+  /** controla a velocidade do t-rex */
+  @FXML
+  private Slider sliderTRex;
 
   /**************************************************************** <p>
   * Metodo: Controlador (construtor) <p>
@@ -72,8 +106,8 @@ public class Controlador extends Declarador implements Initializable {
 
   public Controlador(String arquivo, String css) throws Exception {
     super(arquivo, css);
-    // testeDino.start();
-    // testeDino.setCaminho(caminhoB1);
+    movimentoTRex.setCaminho(caminhoB2);
+    movimentoTRex.start();
   }
 
   /**************************************************************** <p>
@@ -89,6 +123,7 @@ public class Controlador extends Declarador implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     grupoInicial.setVisible(true);
     grupoSelecao.setVisible(false);
+    movimentoTRex = new Movimento(tRex, sliderTRex);
   }
 
   /**************************************************************** <p>

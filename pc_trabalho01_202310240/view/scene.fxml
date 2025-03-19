@@ -5,17 +5,21 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="fundo" stylesheets="@../index.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Group fx:id="grupoInicial" layoutX="521.0" layoutY="47.0">
+      <Slider fx:id="sliderTRex" layoutX="589.0" layoutY="369.0" max="300.0" value="200.0" visible="false" />
+      <Group fx:id="grupoInicial" layoutX="521.0" layoutY="47.0" visible="false">
          <children>
             <Label prefHeight="208.0" prefWidth="255.0" styleClass="initial--title" text="DINO'S&#10;RUN" />
             <Button layoutX="1.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#botaoStart" prefHeight="70.0" prefWidth="159.0" text="START" />
          </children>
       </Group>
-      <Group fx:id="grupoSelecao" layoutX="425.0" layoutY="79.0" visible="false">
+      <Group fx:id="grupoSelecao" layoutX="425.0" layoutY="79.0">
          <children>
             <Label alignment="CENTER" prefWidth="424.0" styleClass="selecionar--title" text="SELECIONE A POSICAO &#10;INICIAL DOS DINOSSAUROS!" textAlignment="CENTER" wrapText="true" />
             <MenuButton fx:id="menuSelecao" accessibleRole="IMAGE_VIEW" cache="true" layoutX="159.0" layoutY="119.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="148.0" styleClass="selecionar--menu" text="SELECIONAR" wrapText="true">
@@ -26,5 +30,10 @@
             </MenuButton>
          </children>
       </Group>
+      <ImageView fx:id="tRex" fitHeight="90.0" fitWidth="66.0" layoutX="85.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/t_rex_2.git.gif" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

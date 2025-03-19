@@ -41,6 +41,7 @@ cor de fundo em hover: rgb(226, 226, 226);
 /* titulo para selecionar a posicao dos dinos */
 .selecionar--title{
   -fx-font-size: 30px;
+  /* -fx-font-weight: bold;   */
 }
 
 /* menu de selecao da posicao dos dinos */
@@ -68,6 +69,6 @@ cor de fundo em hover: rgb(226, 226, 226);
 
 /* edita o fundo do menu dos dinos */
 .context-menu {
-  
+
   -fx-border-color: rgb(105, 105, 105);
 }
