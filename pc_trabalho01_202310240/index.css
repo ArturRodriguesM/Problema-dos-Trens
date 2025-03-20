@@ -8,6 +8,7 @@ cor do fundo: rgb(255, 255, 255);
 cor de fundo em hover: rgb(226, 226, 226);
 
 */
+
 /* estilo de todos os textos da interface  */
 .text {
   -fx-font-family: Minecraft;
@@ -23,7 +24,6 @@ cor de fundo em hover: rgb(226, 226, 226);
   -fx-border-color: rgb(105, 105, 105);
   -fx-border-radius: 20px;
 }
-
 .button:hover {
   -fx-background-color: rgb(226, 226, 226);
   -fx-text-fill: rgb(0,0,0);
@@ -43,7 +43,6 @@ cor de fundo em hover: rgb(226, 226, 226);
   -fx-font-size: 30px;
   /* -fx-font-weight: bold;   */
 }
-
 /* menu de selecao da posicao dos dinos */
 .selecionar--menu {
   -fx-background-color: white;
@@ -52,12 +51,6 @@ cor de fundo em hover: rgb(226, 226, 226);
   -fx-border-radius: 10px;
   -fx-font-size: 15px;
 }
-
-/* edita o texto dos itens do menu de selecao da posicao dos dinos */
-.menu-item .label {
-
-}
-
 /* muda o menu-item quando o mouse esta em cima */
 .menu-item:focused {
   -fx-background-color: rgb(226, 226, 226);
@@ -65,10 +58,18 @@ cor de fundo em hover: rgb(226, 226, 226);
 .menu-item:focused .label{
   -fx-text-fill:black;
 }
-
-
 /* edita o fundo do menu dos dinos */
 .context-menu {
-
   -fx-border-color: rgb(105, 105, 105);
+}
+
+/* texto "controles de velocidade" */
+.velocidade--text {
+  -fx-font-size: 20px;
+}
+/* botao de reset do movimento */
+.velocidade--button {
+  -fx-font-size: 20px;
+  -fx-border-width: 2px;
+  -fx-border-radius: 10px;
 }

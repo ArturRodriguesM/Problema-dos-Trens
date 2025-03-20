@@ -223,7 +223,7 @@ public class Movimento extends Thread {
 
   /****************************************************************
    * Metodo: pararMovimento
-   * Funcao: consegue parar o movimento do trem
+   * Funcao: consegue parar o movimento do objeto
    @param N/A
    @return <code>void</code>
     ****************************************************************/
