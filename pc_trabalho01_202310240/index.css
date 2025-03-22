@@ -30,7 +30,7 @@ cor de fundo em hover: rgb(226, 226, 226);
 }
 
 .fundo {
-  -fx-background-image: url("img/cenarioVertical.png");
+  -fx-background-image: url("img/cenario.png");
 }
 
 /* titulo "dino's run" */

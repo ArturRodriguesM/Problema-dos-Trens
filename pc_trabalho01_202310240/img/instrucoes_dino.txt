@@ -1,0 +1,12 @@
+INSTRUÇOES PARA DESENHAR OS DINOS
+
+dino escuro
+  - selecionar bordinha que ja tem e pintar com a cor do dino original
+  - selecionar por cor o dino todo (com execao do olho que eh branco)
+  - pintar tudo de RGB (80, 80, 80)
+  - criar borda de 2 px
+  - pintar borda de RGB (30, 30, 30)
+  - mudar para 200ms
+
+dino claro
+  - cor de fundo - rgb (170, 170, 170)x
