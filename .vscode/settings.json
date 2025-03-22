@@ -1,5 +1,7 @@
 {
-  "java.project.sourcePaths": ["pc_trabalho01_202310240"],
+  "java.project.sourcePaths": [
+    "pc_trabalho01_202310240"
+  ],
   "java.project.outputPath": "bin",
   "java.project.referencedLibraries": [],
   "files.associations": { "*.java": "java" },

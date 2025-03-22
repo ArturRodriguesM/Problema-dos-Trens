@@ -67,6 +67,23 @@ cor de fundo em hover: rgb(226, 226, 226);
 .velocidade--text {
   -fx-font-size: 20px;
 }
+/* controle de velocidade 
+  track - linha pelo qual desliza o controle*/
+.slider .track{
+  -fx-background-color:  rgb(255, 255, 255);
+  -fx-border-color: rgb(105, 105, 105);
+  -fx-border-radius: 20px;
+  
+}
+/* thumb - bolinha que movimenta a velocidade */
+.slider .thumb {
+  -fx-border-color: rgb(105, 105, 105);
+  -fx-background-color: rgb(255, 255, 255);
+  -fx-border-radius: 30px;
+}
+.slider .thumb:hover{
+  -fx-background-color: rgb(226, 226, 226);
+}
 /* botao de reset do movimento */
 .velocidade--button {
   -fx-font-size: 20px;
