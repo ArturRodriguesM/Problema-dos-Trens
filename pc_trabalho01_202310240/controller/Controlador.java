@@ -125,7 +125,6 @@ public class Controlador extends Declarador implements Initializable {
   @param css arquivo css de estilizacao
   @return <code>N/A</code> construcao do controlador
   ****************************************************************/
-
   public Controlador(String arquivo, String css) throws Exception {
     super(arquivo, css);
     movimentoTRexB.setCaminho(caminhoB2);
@@ -143,7 +142,6 @@ public class Controlador extends Declarador implements Initializable {
   @param resources parametro do javafx
   @return <code>void</code> 
   ****************************************************************/
-
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     grupoInicial.setVisible(true);
@@ -162,7 +160,6 @@ public class Controlador extends Declarador implements Initializable {
   @param event evento que iniciou o metodo (click)
   @return <code>void</code> 
   ****************************************************************/
-
   @FXML
   public void botaoStart(MouseEvent event) {
     grupoInicial.setVisible(false);
@@ -176,10 +173,9 @@ public class Controlador extends Declarador implements Initializable {
   @param habilitar true para aparecer e false para sumir
   @return <code>void</code> 
   ****************************************************************/
-
   public void habilitarSelecao(boolean habilitar) {
     grupoSelecao.setVisible(habilitar);
-    fimMovimentacao();
+    fimMovimentacao(true);
     System.out.println(habilitarBotaoIniciarMovimento());
   }
 
@@ -187,14 +183,19 @@ public class Controlador extends Declarador implements Initializable {
   * Metodo: fimMovimentacaoInicial <p>
   * Funcao: finaliza a movimentacao dos dinossauros do comeco da 
   aplicacao <p>
+  @param anularCaminho se for true, ele deixa o caminho que os 
+  dinossauros devem seguir nulo ao final do movimento; se for
+  false, o caminho se mantem o mesmo que estava antes de parar o 
+  movimento
   @return <code>void</code>
   ****************************************************************/
-
-  public void fimMovimentacao() {
+  public void fimMovimentacao(boolean anularCaminho) {
     movimentoTRexA.pararMovimento();
     movimentoTRexB.pararMovimento();
-    movimentoTRexA.setCaminho(null);
-    movimentoTRexB.setCaminho(null);
+    if (anularCaminho) {
+      movimentoTRexA.setCaminho(null);
+      movimentoTRexB.setCaminho(null);
+    }
     movimentoTRexA.getControle_Velocidade().setValue(velocidadePadrao);
     movimentoTRexB.getControle_Velocidade().setValue(velocidadePadrao);
     grupoTRex.setVisible(false);
@@ -207,7 +208,6 @@ public class Controlador extends Declarador implements Initializable {
   @return <code>boolean</code> retorna se foi possivel habilitar ou
   nao o botao
   ****************************************************************/
-
   public boolean habilitarBotaoIniciarMovimento() {
     //se os 2 trexs possuirem um caminho, entao pode-se iniciar o movimento
     if (movimentoTRexA.getCaminho() != null && movimentoTRexB.getCaminho() != null) {
@@ -281,7 +281,6 @@ public class Controlador extends Declarador implements Initializable {
   @param event evento de click do mouse do javafx
   @return <code>void</code> 
   ****************************************************************/
-
   @FXML
   void iniciarMovimento(MouseEvent event) {
     grupoTRex.setVisible(true);
@@ -299,11 +298,10 @@ public class Controlador extends Declarador implements Initializable {
   @param event evento de click do javafx
   @return <code>void</code>
   ****************************************************************/
-
   @FXML
   void reset(MouseEvent event) {
     grupoVelocidade.setVisible(false);
-    fimMovimentacao();
+    fimMovimentacao(false);
     grupoSelecao.setVisible(true);
     habilitarBotaoIniciarMovimento();
   }
