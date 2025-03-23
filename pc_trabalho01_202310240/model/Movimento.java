@@ -332,7 +332,7 @@ public class Movimento extends Thread {
   ****************************************************************/
 
   public void setCaminho(Caminho caminho) {
-    this.caminho = caminho;
+    this.caminho = caminho != null ? new Caminho(caminho) : null;
   }
 
   public void setAnimacao(Temporizador animacao) {

@@ -74,8 +74,8 @@
       </Group>
       <Group fx:id="grupoVelocidade" layoutX="526.0" layoutY="158.0" visible="false">
          <children>
-            <Slider fx:id="sliderTRexB" layoutX="110.0" layoutY="143.0" max="400.0" value="200.0" />
-            <Slider fx:id="sliderTRexA" layoutX="110.0" layoutY="78.0" max="400.0" value="200.0" />
+            <Slider fx:id="sliderTRexB" layoutX="110.0" layoutY="143.0" max="500.0" value="200.0" />
+            <Slider fx:id="sliderTRexA" layoutX="110.0" layoutY="78.0" max="500.0" value="200.0" />
             <ImageView fitHeight="56.0" fitWidth="50.0" layoutX="17.0" layoutY="123.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/t_rex_branco.gif" />

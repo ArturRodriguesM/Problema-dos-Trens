@@ -16,13 +16,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import model.*;
 
 /**************************************************************** <p>
@@ -134,22 +132,6 @@ public class Controlador extends Declarador implements Initializable {
   private final int velocidadePadrao = 200;
 
   /**************************************************************** <p>
-  * Metodo: Controlador (construtor) <p>
-  * Funcao: Cria o controlador do javafx ja com o css <p>
-  @param arquivo arquivo FXML da aplicacao
-  @param css arquivo css de estilizacao
-  @return <code>N/A</code> construcao do controlador
-  ****************************************************************/
-  public Controlador(String arquivo, String css) throws Exception {
-    super(arquivo, css);
-    movimentoTRexB.setCaminho(caminhoB2);
-    movimentoTRexA.setCaminho(caminhoA1);
-    System.out.println(sliderTRexA);
-    movimentoTRexB.moverPara();
-    movimentoTRexA.moverPara();
-  }
-
-  /**************************************************************** <p>
   * Metodo: initialize <p>
   * Funcao: roda quando o javafx inicializa os elementos da interface.
   Eh aqui onde se determina os seus estados iniciais <p>
@@ -169,6 +151,24 @@ public class Controlador extends Declarador implements Initializable {
   }
 
   /**************************************************************** <p>
+  * Metodo: Controlador (construtor) <p>
+  * Funcao: Cria o controlador do javafx ja com o css <p>
+  @param arquivo arquivo FXML da aplicacao
+  @param css arquivo css de estilizacao
+  @return <code>N/A</code> construcao do controlador
+  ****************************************************************/
+  public Controlador(String arquivo, String css) throws Exception {
+    super(arquivo, css);
+    //movimento da tela inicial dos dinos
+    movimentoTRexA.setCaminho(caminhoA1);
+    movimentoTRexB.setCaminho(caminhoB2);
+    movimentoTRexA.getControle_Velocidade().setValue(100);
+    movimentoTRexB.getControle_Velocidade().setValue(200);
+    movimentoTRexB.moverPara();
+    movimentoTRexA.moverPara();
+  }
+
+  /**************************************************************** <p>
   * Metodo: botaoStart <p>
   * Funcao: modifica a cena da interface para a selcao da posicao
   dos dinossauros quando o botao start inicial eh pressionado <p>
@@ -178,41 +178,104 @@ public class Controlador extends Declarador implements Initializable {
   @FXML
   public void botaoStart(MouseEvent event) {
     grupoInicial.setVisible(false);
-    habilitarSelecao(true);
+    habilitarSelecao(true, true);
   }
 
   /**************************************************************** <p>
   * Metodo: habilitarSelecao <p>
-  * Funcao: fazer aparecer ou desaparecer a tela de selecao da posicao
-   dos dinossauros <p>
+  * Funcao: fazer aparecer a tela de selecao da posicao dos dinossauros <p>
   @param habilitar true para aparecer e false para sumir
+  @param anularCaminho parametro para o fim da movimentacao
+  @param transicao parametro para o fim da movimentacao  
   @return <code>void</code> 
+  @see #fimMovimentacao(boolean, boolean)
   ****************************************************************/
-  public void habilitarSelecao(boolean habilitar) {
-    grupoSelecao.setVisible(habilitar);
-    fimMovimentacao(true);
-    System.out.println(habilitarBotaoIniciarMovimento());
+  public void habilitarSelecao(boolean anularCaminho, boolean transicao) {
+
+    //thread responsavel por esperar o fim do movimento do dino, caso haja transicao de movimento
+    //obs.: verificar como funciona a transicao de movimento na documentacao do metodo fimMovimentacao
+    Thread esperarFimDoMovimento = new Thread() {
+      @Override
+      public void run() {
+        grupoSelecao.setVisible(true);
+
+        //apenas habilita a tela de selecao quando 
+        //os dinossauros terminarem seus respectivos movimentos
+        grupoSelecao.setDisable(true);
+        fimMovimentacao(anularCaminho, transicao); //Possui espera ocupada
+        grupoSelecao.setDisable(false);
+
+        habilitarBotaoIniciarMovimento();
+      }
+    };
+    esperarFimDoMovimento.setName("esperarFimDoMovimento");
+    esperarFimDoMovimento.start();
   }
 
   /**************************************************************** <p>
-  * Metodo: fimMovimentacaoInicial <p>
-  * Funcao: finaliza a movimentacao dos dinossauros do comeco da 
-  aplicacao <p>
-  @param anularCaminho se for true, ele deixa o caminho que os 
-  dinossauros devem seguir nulo ao final do movimento; se for
+  * Metodo: fimMovimentacao <p>
+  * Funcao: finaliza a movimentacao dos dinossauros <p>
+  @param anularCaminho se for true, os dinossauros deixam de seguir
+  os seus respectivos caminhos para receberem outros; se for
   false, o caminho se mantem o mesmo que estava antes de parar o 
   movimento
+  @param transicao se for true, os dinossauros irao primeiro finalizar
+  o movimento que estao realizando em alta velocidade, ate chegar no final
+  do caminho. Se false, eles apenas pararao o movimento e se teleportarao 
+  o fim da pista. <p>
+  OBS.: Se a transicao for TRUE, deve-se chamar o metodo "fimMovimento"
+  em uma thread DIFERENTE da do javafx, pois o metodo possui espera
+  ocupada, e isso travara a interface do javafx
   @return <code>void</code>
   ****************************************************************/
-  public void fimMovimentacao(boolean anularCaminho) {
-    movimentoTRexA.pararMovimento();
-    movimentoTRexB.pararMovimento();
+  public void fimMovimentacao(boolean anularCaminho, boolean transicao) {
+    //para o movimento dos dinos
+
+    if (transicao) {
+      //primeiro, eh necessario indicar o ponto de reinicio como nulo, 
+      //pois assim o dino nao iria reiniciar o movimento
+      movimentoTRexA.getCaminho().setReinicio(null);
+      movimentoTRexB.getCaminho().setReinicio(null);
+
+      //agora, aumenta-se a velocidade dos dinos
+      movimentoTRexA.getControle_Velocidade().setValue(500);
+      movimentoTRexB.getControle_Velocidade().setValue(500);
+
+      //While de espera, ate o movimento terminar
+      do {
+        try {
+          Thread.sleep(10);
+        } catch (InterruptedException e) {
+
+        }
+      } while (movimentoTRexA.getEmMovimento() || movimentoTRexB.getEmMovimento());
+
+      System.out.println("saiu do loop");
+    } else {
+      //apenas para o movimento
+      movimentoTRexA.pararMovimento();
+      movimentoTRexB.pararMovimento();
+    }
     if (anularCaminho) {
+      //deve-se anular o caminho quando o usuario for escolher
+      //o caminho do dino, na tela de selecao
       movimentoTRexA.setCaminho(null);
       movimentoTRexB.setCaminho(null);
+      //obs.: como o dino nao vai ter mais caminho,
+      //a posicao que ele ficara depois de acabar a movimentacao
+      //nao importa, desde que o dino fique escondido. 
+      //por isso, um ponto de "reinicio" qualquer
+      //foi escolhido
+      movimentoTRexA.setPosicao(caminhoA1.getReinicio());
+      movimentoTRexB.setPosicao(caminhoA1.getReinicio());
+    } else {
+      //o caminho se mantem quando o usuario der reset na 
+      //movimentacao. Quando a tela de selecao aparecer, os 
+      //dinos estarao no inicio de seus respectivos caminhos
+      movimentoTRexA.setPosicao(movimentoTRexA.getCaminho().getInicio());
+      movimentoTRexB.setPosicao(movimentoTRexB.getCaminho().getInicio());
     }
-    movimentoTRexA.setPosicao(caminhoA1.getReinicio());
-    movimentoTRexB.setPosicao(caminhoA1.getReinicio());
+    //reinicia velocidade dos dinos
     movimentoTRexA.getControle_Velocidade().setValue(velocidadePadrao);
     movimentoTRexB.getControle_Velocidade().setValue(velocidadePadrao);
   }
@@ -244,7 +307,6 @@ public class Controlador extends Declarador implements Initializable {
   atraves do click do mouse
   @return <code>void</code> 
   ****************************************************************/
-
   @FXML
   void indicarCaminho(ActionEvent event) {
     //sequencia de ifs para saber qual opcao foi selecionada 
@@ -278,60 +340,6 @@ public class Controlador extends Declarador implements Initializable {
   }
 
   /**************************************************************** <p>
-   * Metodo: acima1Pressionado <p>
-   * Funcao: faz o dinossauro da ESQUERDA ficar na barte de cima da pista <p>
-   @param event evendo do javafx
-   @return <code>void</code> 
-   ****************************************************************/
-  @FXML
-  void acimaAPressionado(ActionEvent event) {
-    System.out.println("pressionado acima");
-    menuSelecaoA.setText("Acima");
-    movimentoTRexA.setCaminho(caminhoA1);
-    habilitarBotaoIniciarMovimento();
-  }
-
-  /**************************************************************** <p>
-   * Metodo: abaixo1Pressionado <p>
-   * Funcao: faz o dinossauro da ESQUERDA ficar na barte de baixo da pista <p>
-   @param event evendo do javafx
-   @return <code>void</code> 
-   ****************************************************************/
-  @FXML
-  void abaixoAPressionado(ActionEvent event) {
-    System.out.println("pressionado abaixo");
-    menuSelecaoA.setText("Abaixo");
-    movimentoTRexA.setCaminho(caminhoA2);
-    habilitarBotaoIniciarMovimento();
-  }
-
-  /**************************************************************** <p>
-   * Metodo: acimaBPressionado <p>
-   * Funcao: faz o dinossauro da DIREITA ficar na barte de cima da pista <p>
-   @param event evendo do javafx
-   @return <code>void</code> 
-   ****************************************************************/
-  @FXML
-  void acimaBPressionado(ActionEvent event) {
-    System.out.println("pressionado acima");
-    menuSelecaoB.setText("Acima");
-    movimentoTRexB.setCaminho(caminhoB1);
-    habilitarBotaoIniciarMovimento();
-  }
-
-  /**************************************************************** <p>
-   * Metodo: abaixoBPressionado <p>
-   * Funcao: faz o dinossauro da DIREITA ficar na barte de baixo da pista <p>
-   @param event evendo do javafx
-   @return <code>void</code> 
-   ****************************************************************/
-  @FXML
-  void abaixoBPressionado(ActionEvent event) {
-    System.out.println("pressionado abaixo");
-    habilitarBotaoIniciarMovimento();
-  }
-
-  /**************************************************************** <p>
   * Metodo: mostrarPosicao <p>
   * Funcao: mostrar a posicao que ficara o dino, respectiva de cada
    opcao dos menus <p>
@@ -343,15 +351,19 @@ public class Controlador extends Declarador implements Initializable {
     //sequencia de ifs para saber qual opcao o usuario passou o mouse por cima
     Object opcaoAcionada = event.getSource();
     if (opcaoAcionada.equals(acimaA.getGraphic())) {
+      //mostra a posicao inicial do dino da ESQUERDA em CIMA
       movimentoTRexA.setPosicao(caminhoA1.getInicio());
 
     } else if (opcaoAcionada.equals(abaixoA.getGraphic())) {
+      //mostra a posicao inicial do dino da ESQUERDA em BAIXO
       movimentoTRexA.setPosicao(caminhoA2.getInicio());
 
     } else if (opcaoAcionada.equals(acimaB.getGraphic())) {
+      //mostra a posicao inicial do dino da DIREITA em CIMA
       movimentoTRexB.setPosicao(caminhoB1.getInicio());
 
     } else if (opcaoAcionada.equals(abaixoB.getGraphic())) {
+      //mostra a posicao inicial do dino da DIREITA em BAIXO
       movimentoTRexB.setPosicao(caminhoB2.getInicio());
 
     }
@@ -384,7 +396,7 @@ public class Controlador extends Declarador implements Initializable {
   @FXML
   void reset(MouseEvent event) {
     grupoVelocidade.setVisible(false);
-    fimMovimentacao(false);
+    fimMovimentacao(false, false);
     grupoSelecao.setVisible(true);
     habilitarBotaoIniciarMovimento();
   }
