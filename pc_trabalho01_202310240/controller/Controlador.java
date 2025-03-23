@@ -16,10 +16,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import model.*;
 
 /**************************************************************** <p>
@@ -97,6 +100,18 @@ public class Controlador extends Declarador implements Initializable {
   /** menu para selecionar a posicao inicial do dinossauro da direita */
   @FXML
   private MenuButton menuSelecaoB;
+  /** coloca o dino da esquerda na parte de cima */
+  @FXML
+  private MenuItem acimaA;
+  /** coloca o dino da esquerda na parte de baixo */
+  @FXML
+  private MenuItem abaixoA;
+  /** coloca o dino da direita na parte de cima */
+  @FXML
+  private MenuItem acimaB;
+  /** coloca o dino da direita na parte de baixo */
+  @FXML
+  private MenuItem abaixoB;
   /** botao da tela de selecao da posicao dos dinossauros para iniciar o movimento 
    * dos dinossauros
    */
@@ -196,9 +211,10 @@ public class Controlador extends Declarador implements Initializable {
       movimentoTRexA.setCaminho(null);
       movimentoTRexB.setCaminho(null);
     }
+    movimentoTRexA.setPosicao(caminhoA1.getReinicio());
+    movimentoTRexB.setPosicao(caminhoA1.getReinicio());
     movimentoTRexA.getControle_Velocidade().setValue(velocidadePadrao);
     movimentoTRexB.getControle_Velocidade().setValue(velocidadePadrao);
-    grupoTRex.setVisible(false);
   }
 
   /**************************************************************** <p>
@@ -216,6 +232,49 @@ public class Controlador extends Declarador implements Initializable {
     }
     botaoIniciarMovimento.setDisable(true);
     return false;
+  }
+
+  /**************************************************************** <p>
+  * Metodo: indicarCaminho <p>
+  * Funcao: set do caminho que os dinos irao seguir, sendo este metodo
+  acionado pelos menus de selecao da tela de selecao. Ao ser escolhido
+  o caminho, o dino sera teleportado automaticamente para o seu ponto
+  inicial <p>
+  @param event indica qual opcao foi escolhida pelo usuario,
+  atraves do click do mouse
+  @return <code>void</code> 
+  ****************************************************************/
+
+  @FXML
+  void indicarCaminho(ActionEvent event) {
+    //sequencia de ifs para saber qual opcao foi selecionada 
+    Object opcaoClicada = event.getSource(); //opcao clicada pelo usuario
+    if (opcaoClicada.equals(acimaA)) {
+      //o dino da ESQUERDA fica na parde de CIMA da pista
+      movimentoTRexA.setPosicao(caminhoA1.getInicio());
+      menuSelecaoA.setText("Acima");
+      movimentoTRexA.setCaminho(caminhoA1);
+
+    } else if (opcaoClicada.equals(abaixoA)) {
+      //o dino da ESQUERDA fica na parde de BAIXO da pista
+      movimentoTRexA.setPosicao(caminhoA2.getInicio());
+      menuSelecaoA.setText("Abaixo");
+      movimentoTRexA.setCaminho(caminhoA2);
+
+    } else if (opcaoClicada.equals(acimaB)) {
+      //o dino da DIREITA fica na parde de CIMA da pista
+      movimentoTRexB.setPosicao(caminhoB1.getInicio());
+      menuSelecaoB.setText("Acima");
+      movimentoTRexB.setCaminho(caminhoB1);
+
+    } else if (opcaoClicada.equals(abaixoB)) {
+      //o dino da DIREITA fica na parde de BAIXO da pista
+      movimentoTRexB.setPosicao(caminhoB2.getInicio());
+      menuSelecaoB.setText("Abaixo");
+      movimentoTRexB.setCaminho(caminhoB2);
+
+    }
+    habilitarBotaoIniciarMovimento();
   }
 
   /**************************************************************** <p>
@@ -269,9 +328,33 @@ public class Controlador extends Declarador implements Initializable {
   @FXML
   void abaixoBPressionado(ActionEvent event) {
     System.out.println("pressionado abaixo");
-    menuSelecaoB.setText("Abaixo");
-    movimentoTRexB.setCaminho(caminhoB2);
     habilitarBotaoIniciarMovimento();
+  }
+
+  /**************************************************************** <p>
+  * Metodo: mostrarPosicao <p>
+  * Funcao: mostrar a posicao que ficara o dino, respectiva de cada
+   opcao dos menus <p>
+  @param event aciona o evento quando o mouse passa por cima da opcao
+  @return <code>void</code> 
+  ****************************************************************/
+  @FXML
+  void mostrarPosicao(MouseEvent event) {
+    //sequencia de ifs para saber qual opcao o usuario passou o mouse por cima
+    Object opcaoAcionada = event.getSource();
+    if (opcaoAcionada.equals(acimaA.getGraphic())) {
+      movimentoTRexA.setPosicao(caminhoA1.getInicio());
+
+    } else if (opcaoAcionada.equals(abaixoA.getGraphic())) {
+      movimentoTRexA.setPosicao(caminhoA2.getInicio());
+
+    } else if (opcaoAcionada.equals(acimaB.getGraphic())) {
+      movimentoTRexB.setPosicao(caminhoB1.getInicio());
+
+    } else if (opcaoAcionada.equals(abaixoB.getGraphic())) {
+      movimentoTRexB.setPosicao(caminhoB2.getInicio());
+
+    }
   }
 
   /**************************************************************** <p>
