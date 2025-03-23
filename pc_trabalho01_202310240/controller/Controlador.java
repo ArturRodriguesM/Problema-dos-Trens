@@ -12,6 +12,8 @@ import java.net.URL;
 import javafx.scene.Group;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import model.*;
@@ -147,6 +150,35 @@ public class Controlador extends Declarador implements Initializable {
     grupoVelocidade.setVisible(false);
     movimentoTRexA = new Movimento(tRexA, sliderTRexA);
     movimentoTRexB = new Movimento(tRexB, sliderTRexB);
+
+    sliderTRexA.valueProperty().addListener(new ChangeListener<Number>() {
+
+      @Override
+      public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+        if (newValue.doubleValue() == 0 && oldValue.doubleValue() != 0) {
+          tRexA.setImage(new Image("/img/t_rex_preto_parado.png"));
+        }
+        if (newValue.doubleValue() != 0 && oldValue.doubleValue() == 0) {
+          tRexA.setImage(new Image("/img/t_rex_preto.gif"));
+        }
+      }
+
+    });
+
+    sliderTRexB.valueProperty().addListener(new ChangeListener<Number>() {
+
+      @Override
+      public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+        if (newValue.doubleValue() == 0 && oldValue.doubleValue() != 0) {
+          tRexB.setImage(new Image("/img/t_rex_branco_parado.png"));
+        }
+        if (newValue.doubleValue() != 0 && oldValue.doubleValue() == 0) {
+          tRexB.setImage(new Image("/img/t_rex_branco.gif"));
+        }
+      }
+
+    });
+
     botaoIniciarMovimento.setDisable(false);
   }
 

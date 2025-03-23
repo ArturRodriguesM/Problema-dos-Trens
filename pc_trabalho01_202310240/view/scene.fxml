@@ -32,7 +32,7 @@
             </ImageView>
          </children>
       </Group>
-      <Group fx:id="grupoSelecao" layoutX="431.0" layoutY="82.0">
+      <Group fx:id="grupoSelecao" layoutX="431.0" layoutY="82.0" visible="false">
          <children>
             <Label alignment="CENTER" layoutY="6.0" prefWidth="424.0" styleClass="selecionar--title" text="SELECIONE A POSICAO &#10;INICIAL DOS DINOSSAUROS!" textAlignment="CENTER" wrapText="true" />
             <MenuButton fx:id="menuSelecaoA" accessibleRole="IMAGE_VIEW" cache="true" layoutX="10.0" layoutY="202.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="148.0" styleClass="selecionar--menu" text="SELECIONAR" wrapText="true">
@@ -59,31 +59,31 @@
                      </graphic></MenuItem>
                </items>
             </MenuButton>
-            <ImageView fitHeight="43.0" fitWidth="40.0" layoutX="64.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="61.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/t_rex_preto.gif" />
+                  <Image url="@../img/t_rex_preto_icon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="43.0" fitWidth="40.0" layoutX="325.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="322.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/t_rex_branco.gif" />
+                  <Image url="@../img/t_rex_branco_icon.png" />
                </image>
             </ImageView>
             <Button fx:id="botaoIniciarMovimento" layoutX="145.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#iniciarMovimento" prefHeight="70.0" prefWidth="159.0" styleClass="selecionar--button" text="START" />
          </children>
       </Group>
-      <Group fx:id="grupoVelocidade" layoutX="526.0" layoutY="158.0" visible="false">
+      <Group fx:id="grupoVelocidade" layoutX="507.0" layoutY="158.0">
          <children>
             <Slider fx:id="sliderTRexB" layoutX="110.0" layoutY="143.0" max="500.0" value="200.0" />
             <Slider fx:id="sliderTRexA" layoutX="110.0" layoutY="78.0" max="500.0" value="200.0" />
-            <ImageView fitHeight="56.0" fitWidth="50.0" layoutX="17.0" layoutY="123.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="17.0" layoutY="126.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/t_rex_branco.gif" />
+                  <Image url="@../img/t_rex_branco_icon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="56.0" fitWidth="50.0" layoutX="17.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="17.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/t_rex_preto.gif" />
+                  <Image url="@../img/t_rex_preto_icon.png" />
                </image>
             </ImageView>
             <Label layoutX="-2.0" styleClass="velocidade--text" text="CONTROLES DE VELOCIDADE" />

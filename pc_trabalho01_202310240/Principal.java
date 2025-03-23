@@ -10,6 +10,7 @@
 
 import controller.*;
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -18,6 +19,10 @@ import javafx.stage.Stage;
 * Funcao: Iniciar a aplicacao <p>
 ****************************************************************/
 public class Principal extends Application {
+
+  /** icone da aplicacao */
+  Image icone = new Image("img/t_rex_branco_icon.png");
+
   public static void main(String args[]) throws Exception {
     launch(args);
     System.exit(0);
@@ -36,6 +41,8 @@ public class Principal extends Application {
     Controlador circuito = new Controlador("../view/scene.fxml", "../index.css");
     palco = Declarador.getG_Palco();
     palco.setResizable(false);
+    palco.getIcons().add(icone);
+    palco.setTitle("dino's run");
     palco.sizeToScene();
     circuito.abrir();
   }
