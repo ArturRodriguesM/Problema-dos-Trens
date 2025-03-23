@@ -151,32 +151,20 @@ public class Controlador extends Declarador implements Initializable {
     movimentoTRexA = new Movimento(tRexA, sliderTRexA);
     movimentoTRexB = new Movimento(tRexB, sliderTRexB);
 
+    //o listener faz com que a imagem do t-rex mude se o usuario deixar o dino
+    //parado ou em movimento (ver a documentacao do metodo "mudarImagem")
     sliderTRexA.valueProperty().addListener(new ChangeListener<Number>() {
-
       @Override
       public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-        if (newValue.doubleValue() == 0 && oldValue.doubleValue() != 0) {
-          tRexA.setImage(new Image("/img/t_rex_preto_parado.png"));
-        }
-        if (newValue.doubleValue() != 0 && oldValue.doubleValue() == 0) {
-          tRexA.setImage(new Image("/img/t_rex_preto.gif"));
-        }
+        mudarImagem("/img/t_rex_preto_parado.png", "/img/t_rex_preto.gif", newValue, oldValue, tRexA);
       }
-
     });
 
     sliderTRexB.valueProperty().addListener(new ChangeListener<Number>() {
-
       @Override
       public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-        if (newValue.doubleValue() == 0 && oldValue.doubleValue() != 0) {
-          tRexB.setImage(new Image("/img/t_rex_branco_parado.png"));
-        }
-        if (newValue.doubleValue() != 0 && oldValue.doubleValue() == 0) {
-          tRexB.setImage(new Image("/img/t_rex_branco.gif"));
-        }
+        mudarImagem("/img/t_rex_branco_parado.png", "/img/t_rex_branco.gif", newValue, oldValue, tRexB);
       }
-
     });
 
     botaoIniciarMovimento.setDisable(false);
@@ -415,6 +403,28 @@ public class Controlador extends Declarador implements Initializable {
     grupoVelocidade.setVisible(true);
     movimentoTRexA.moverPara();
     movimentoTRexB.moverPara();
+  }
+
+  /**************************************************************** <p>
+  * Metodo: mudarImagem <p>
+  * Funcao: muda a imagem do t_rex quando para ou quando inicia 
+  o movimento. A imagem dependera do valor do Slider, que acionara
+  o metodo sempre que o seu valor modificar <p>
+  @param urlParado imagem do dino parado
+  @param urlMovimento imagem do dino em movimento
+  @param newValue valor final do slider apos a interacao do usuario
+  @param oldeValue valor inicial do slider antes da interacao do usuario
+  @return <code>void</code> 
+  ****************************************************************/
+
+  public void mudarImagem(String urlParado, String urlMovimento, Number newValue, Number oldValue, ImageView tRex) {
+
+    if (newValue.doubleValue() == 0 && oldValue.doubleValue() != 0) {
+      tRex.setImage(new Image(urlParado));
+    }
+    if (newValue.doubleValue() != 0 && oldValue.doubleValue() == 0) {
+      tRex.setImage(new Image(urlMovimento));
+    }
   }
 
   /**************************************************************** <p>
